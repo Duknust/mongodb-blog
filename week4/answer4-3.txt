@@ -1,2 +1,5 @@
+#created by duknust
+#find in https://github.com/Duknust
+
 db.posts.ensureIndex({permalink:1})
 db.posts.ensureIndex({tags:1,date:1})
