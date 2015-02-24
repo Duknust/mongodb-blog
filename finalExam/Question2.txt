@@ -1,0 +1,1 @@
+db.messages.aggregate([{$project: {from: "$headers.From", to: "$headers.To"}},{$unwind: "$to"},{$group : { _id : { _id: "$_id", from: "$from", to: "$to" }}},{$group : { _id :{ from: "$_id.from", to: "$_id.to" }, count: {$sum :1}}},{$sort : {count:-1}},{$limit: 2}],{allowDiskUse:true})

@@ -1,0 +1,17 @@
+db.obj.ensureIndex({_id:1})
+db.obj.ensureIndex({a:1,b:1})
+db.obj.ensureIndex({a:1,c:1})
+db.obj.ensureIndex({c:1})
+db.obj.ensureIndex({a:1,b:1,c:-1})
+
+db.obj.getIndexes()
+
+db.obj.find({'a':{'$lt':10000}, 'b':{'$gt': 5000}}, {'a':1, 'c':1}).sort({'c':-1}).explain()
+db.obj.dropIndex({c:1})
+db.obj.find({'a':{'$lt':10000}, 'b':{'$gt': 5000}}, {'a':1, 'c':1}).sort({'c':-1}).explain()
+db.obj.dropIndex({a:1,b:1,c:-1})
+db.obj.find({'a':{'$lt':10000}, 'b':{'$gt': 5000}}, {'a':1, 'c':1}).sort({'c':-1}).explain()
+db.obj.dropIndex({a:1,c:1})
+db.obj.find({'a':{'$lt':10000}, 'b':{'$gt': 5000}}, {'a':1, 'c':1}).sort({'c':-1}).explain()
+db.obj.dropIndex({a:1,b:1})
+db.obj.find({'a':{'$lt':10000}, 'b':{'$gt': 5000}}, {'a':1, 'c':1}).sort({'c':-1}).explain()
